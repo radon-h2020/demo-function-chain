@@ -31,13 +31,12 @@ topology_template:
         y: "199"
         displayName: "AzureBlobTriggerContainer"
       properties:
-        public_access: "container"
-        container_out_name: "first-operatest-output"
+        container_out_name: { get_input: container_out_name }
         size: "0 MB"
-        container_name: "first-operatest"
-        storage_account_name: "myappchain"
+        container_name: { get_input: container_name }
+        storage_account_name: { get_input: storage_account_name }
         name: "blobtriggercontainer"
-        resource_group_name: "myappchain"
+        resource_group_name: { get_input: resource_group_name }
       requirements:
         - trigger:
             node: AzureDurableOrchestrator_0
@@ -50,13 +49,13 @@ topology_template:
         y: "149"
         displayName: "AzureHttpFunctionLocal"
       properties:
-        storage_account_name: "myappchain"
-        function_app_name: "MyFuncInChain1"
+        storage_account_name: { get_input: storage_account_name }
+        function_app_name: { get_input: function_app_name_inchain_1 }
         runtime_version: 3.6
-        function_name: "style_transfer"
+        function_name: { get_input: function_name_inchain_1 }
         os_type: "Linux"
         name: "AzureHttpFunction"
-        resource_group_name: "myappchain"
+        resource_group_name: { get_input: resource_group_name }
         runtime_type: "python"
         function_version: 2
         order: 1
@@ -77,13 +76,13 @@ topology_template:
         y: "149"
         displayName: "AzureHttpFunctionLocal"
       properties:
-        storage_account_name: "myappchain"
-        function_app_name: "MyFuncInChain2"
+        storage_account_name: { get_input: storage_account_name }
+        function_app_name: { get_input: function_app_name_inchain_2 }
         runtime_version: 3.6
-        function_name: "channel_filter"
+        function_name: { get_input: function_name_inchain_2 }
         os_type: "Linux"
         name: "AzureHttpFunction"
-        resource_group_name: "myappchain"
+        resource_group_name: { get_input: resource_group_name }
         runtime_type: "python"
         function_version: 2
         order: 2
@@ -104,13 +103,13 @@ topology_template:
         y: "149"
         displayName: "AzureHttpFunctionLocal"
       properties:
-        storage_account_name: "myappchain"
-        function_app_name: "MyFuncInChain3"
+        storage_account_name: { get_input: storage_account_name }
+        function_app_name: { get_input: function_app_name_inchain_3 }
         runtime_version: 3.6
-        function_name: "text_printer"
+        function_name: { get_input: function_name_inchain_3 }
         os_type: "Linux"
         name: "AzureHttpFunction"
-        resource_group_name: "myappchain"
+        resource_group_name: { get_input: resource_group_name }
         runtime_type: "python"
         function_version: 2
         order: 3
@@ -131,11 +130,11 @@ topology_template:
         y: "209"
         displayName: "AzureDurableOrchestrator"
       properties:
-        storage_account_name: "myappchain"
-        function_app_name: "ADO1"
-        function_name: "DurableFunctionsOrchestrator1"
+        storage_account_name: { get_input: storage_account_name }
+        function_app_name: { get_input: function_app_name_orchestrator }
+        function_name: { get_input: function_name_orchestrator }
         os_type: "Linux"
-        resource_group_name: "myappchain"
+        resource_group_name: { get_input: resource_group_name }
         runtime_type: "python"
         runtime_version: 3.6
         function_version: 2

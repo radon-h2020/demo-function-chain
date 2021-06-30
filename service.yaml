@@ -1,3 +1,4 @@
+---
 tosca_definitions_version: tosca_simple_yaml_1_3
 
 metadata:
@@ -152,3 +153,4 @@ topology_template:
       type: radon.relationships.azure.ConnectToDurable
     con_AzureBlobTriggerDurable_0:
       type: radon.relationships.azure.AzureBlobTriggerDurable
+...

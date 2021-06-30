@@ -1,0 +1,116 @@
+tosca_definitions_version: tosca_simple_yaml_1_3
+
+imports:
+  - file: radonnodesabstract__Function.tosca
+    namespace_uri: radon.nodes.abstract
+    namespace_prefix: radonnodesabstract
+  - file: radonartifacts__Ansible.tosca
+    namespace_uri: radon.artifacts
+    namespace_prefix: radonartifacts
+  - file: radonrelationshipsazure__ConnectToDurable.tosca
+    namespace_uri: radon.relationships.azure
+    namespace_prefix: radonrelationshipsazure
+  - file: radonnodesazure__AzurePlatform.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureDurableOrchestrator.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+node_types:
+  radon.nodes.azure.AzureHttpFunctionLocal:
+    derived_from: radon.nodes.abstract.Function
+    metadata:
+      targetNamespace: "radon.nodes.azure"
+      abstract: "false"
+      final: "false"
+    properties:
+      storage_account_name:
+        type: string
+      runtime_version:
+        type: float
+        description: The version of the Azure functions runtime stack
+      function_app_name:
+        type: string
+      function_name:
+        type: string
+      os_type:
+        type: string
+      resource_group_name:
+        type: string
+      order:
+        type: integer
+      zip_file:
+        type: string
+      runtime_type:
+        type: string
+        default: "python"
+      function_version:
+        type: integer
+        default: 2
+        constraints:
+          - valid_values: [ 2, 3 ]
+    requirements:
+      - host:
+          capability: tosca.capabilities.Container
+          node: radon.nodes.azure.AzurePlatform
+          relationship: tosca.relationships.HostedOn
+          occurrences: [ 1, 1 ]
+      - connect:
+          capability: tosca.capabilities.Container
+          node: radon.nodes.azure.AzureDurableOrchestrator
+          relationship: radon.relationships.azure.ConnectToDurable
+          occurrences: [ 1, 1 ]
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+        inputs:
+          storage_account_name:
+            type: string
+            required: true
+            default: { get_property: [ SELF, storage_account_name ] }
+          runtime_version:
+            type: string
+            required: true
+            default: { get_property: [ SELF, runtime_version ] }
+          function_app_name:
+            type: string
+            required: true
+            default: { get_property: [ SELF, function_app_name ] }
+          function_name:
+            type: string
+            required: true
+            default: { get_property: [ SELF, function_name ] }
+          os_type:
+            type: string
+            required: true
+            default: { get_property: [ SELF, os_type ] }
+          resource_group_name:
+            type: string
+            required: true
+            default: { get_property: [ SELF, resource_group_name ] }
+          zip_file:
+            type: string
+            required: true
+            default: { get_property: [ SELF, zip_file ] }
+          runtime_type:
+            type: string
+            required: true
+            default: { get_property: [ SELF, runtime_type ] }
+          function_version:
+            type: integer
+            required: true
+            default: { get_property: [ SELF, function_version ] }
+          order:
+            type: integer
+            default: { get_property: [ SELF, order ] }
+        operations:
+          create:
+            description: The standard create operation
+            implementation:
+              primary: /nodetypes/radon.nodes.azure/AzureHttpFunctionLocal/files/create/create.yml
+              timeout: 0
+    artifacts:
+      create:
+        type: radon.artifacts.Ansible
+        description: The YAML artifact for creation
+        file: /nodetypes/radon.nodes.azure/AzureHttpFunctionLocal/files/create/create.yml

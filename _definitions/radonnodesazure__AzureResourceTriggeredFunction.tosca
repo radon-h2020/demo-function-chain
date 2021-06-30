@@ -1,0 +1,27 @@
+tosca_definitions_version: tosca_simple_yaml_1_3
+
+imports:
+  - file: radonnodesazure__AzureFunction.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radoncapabilities__Invocable.tosca
+    namespace_uri: radon.capabilities
+    namespace_prefix: radoncapabilities
+  - file: radonnodesazure__AzureBlobStorageContainer.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureCosmosDB.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+node_types:
+  radon.nodes.azure.AzureResourceTriggeredFunction:
+    derived_from: radon.nodes.azure.AzureFunction
+    metadata:
+      targetNamespace: "radon.nodes.azure"
+      abstract: "false"
+      final: "false"
+    capabilities:
+      invocable:
+        occurrences: [ 1, 1 ]
+        valid_source_types: [ radon.nodes.azure.AzureBlobStorageContainer, radon.nodes.azure.AzureCosmosDB ]
+        type: radon.capabilities.Invocable

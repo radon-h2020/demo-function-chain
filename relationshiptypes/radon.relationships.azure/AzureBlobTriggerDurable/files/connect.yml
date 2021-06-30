@@ -1,0 +1,23 @@
+---
+- hosts: all
+  vars:
+    name: "{name}"
+  gather_facts: false
+  tasks:
+    - name: Register Blob as settings
+      shell: "echo $(az storage account show-connection-string -g {{ resource_group_name }} -n {{ storage_account_name }})"
+      register: azure_blob_conn_str
+
+    - name: Unpack connection string dictionary
+      debug:
+        msg: "{{item.key}}: {{item.value}}"
+      with_dict: "{{ azure_blob_conn_str.stdout }}"
+      register: conn_str_dict_item
+      
+    - name: Set application settings for storage credentials
+      command: "az functionapp config appsettings set -g {{ target_resource_group_name }}  -n {{ function_app_name }} --settings myappchain_STORAGE={{ conn_str_dict_item.results[0].item.value }}"
+      
+    - name: set trigger event path
+      command: "az functionapp config appsettings set -g {{ target_resource_group_name }}  -n {{ function_app_name }} --settings AzureWebJobsEventHubPath={{ container_name }}/{{ name }}"
+    - name: set output path
+      command: "az functionapp config appsettings set -g {{ target_resource_group_name }}  -n {{ function_app_name }} --settings container_out={{ container_out_name }}"

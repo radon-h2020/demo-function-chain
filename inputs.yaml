@@ -1,0 +1,16 @@
+---
+# This yaml file contains inputs for resize_service_opera_v1_3.yml.
+
+resource_group_name: mynewappchain
+storage_account_name: mynewappchain
+container_in_name: first-operatest
+container_out_name: firtst-operatest-output
+function_app_name_orchestrator: AOF1
+function_name_orchestrator: DurableFunctionsOrchestrator1
+function_app_name_inchain_1: MyFuncInChain1
+function_name_inchain_2: style_transfer
+function_app_name_inchain_2: MyFuncInChain2
+function_name_inchain_3: channel_filter
+function_app_name_inchain_3: MyFuncInChain1
+function_name_inchain_3: text_printer
+...

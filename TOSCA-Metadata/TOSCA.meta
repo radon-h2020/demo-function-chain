@@ -1,0 +1,419 @@
+TOSCA-Meta-File-Version: 1.1
+CSAR-Version: 1.1
+Created-By: Winery 3.0.0-SNAPSHOT
+Entry-Definitions: _definitions/steIgeneral__seperate_function.tosca
+
+Name: _definitions/radonnodesabstract__ApiGateway.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.abstract/ObjectStorage/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: datatypes/radon.datatypes/Activity/README.md
+Content-Type: text/x-web-markdown
+
+Name: relationshiptypes/radon.relationships.azure/AzureContainerTriggers/files/post_configure_source.yml
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureStorageAccount/files/delete/delete.yml
+Content-Type: text/plain
+
+Name: _definitions/radonrelationshipsazure__AzureBlobTriggerDurable.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: datatypes/radon.datatypes/Event/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureResourceGroup/LICENSE
+Content-Type: text/plain
+
+Name: relationshiptypes/radon.relationships.azure/ConnectToDurable/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.abstract/Function/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.azure/AzureHttpFunctionLocal/README.md
+Content-Type: text/x-web-markdown
+
+Name: _definitions/radonnodesazure__AzureHttpTriggeredFunction.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.azure/AzureCosmosDB/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: _definitions/radonnodesazure__AzureFunction.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.azure/AzureFunction/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.azure/AzureHttpTriggeredFunction/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.abstract/Function/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: datatypes/radon.datatypes/Interaction/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.azure/AzureStorageAccount/files/create/create.yml
+Content-Type: text/plain
+
+Name: relationshiptypes/radon.relationships.azure/AzureTriggers/README.md
+Content-Type: text/x-web-markdown
+
+Name: relationshiptypes/radon.relationships.azure/AzureContainerTriggers/README.md
+Content-Type: text/x-web-markdown
+
+Name: _definitions/tyIgeneral__Precedence.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: artifacttypes/radon.artifacts/Ansible/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureCosmosDB/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.azure/AzureFunction/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.abstract/CloudPlatform/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.azure/AzureResourceTriggeredFunction/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.abstract/ApiGateway/LICENSE
+Content-Type: text/plain
+
+Name: _definitions/radonnodesazure__AzureDurableOrchestrator.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: _definitions/radonnodesazure__AzurePlatform.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.azure/AzurePlatform/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: _definitions/radonnodesabstract__Database.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.abstract/Function/README.md
+Content-Type: text/x-web-markdown
+
+Name: datatypes/radon.datatypes/RandomVariable/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureBlobTriggerContainer/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzurePlatform/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureHttpFunctionLocal/files/create/create.yml
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureResourceTriggeredFunction/LICENSE
+Content-Type: text/plain
+
+Name: datatypes/radon.datatypes/Activity/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureDurableOrchestrator/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzurePlatform/files/delete/delete.yml
+Content-Type: text/plain
+
+Name: _definitions/radonnodesabstract__Function.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.azure/AzureBlobTriggerContainer/files/create/create_azcli.yml
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureBlobStorageContainer/files/delete/delete.yml
+Content-Type: text/plain
+
+Name: relationshiptypes/radon.relationships/ConnectsTo/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.azure/AzureFunction/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: relationshiptypes/radon.relationships/Triggers/README.md
+Content-Type: text/x-web-markdown
+
+Name: capabilitytypes/radon.capabilities/Invocable/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.azure/AzureFunction/files/delete/delete.yml
+Content-Type: text/plain
+
+Name: _definitions/tyIgeneral__RandomVariable.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: relationshiptypes/radon.relationships.azure/AzureTriggers/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.abstract/Database/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureResourceGroup/files/create/create.yml
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureStorageAccount/README.md
+Content-Type: text/x-web-markdown
+
+Name: datatypes/radon.datatypes/Precedence/README.md
+Content-Type: text/x-web-markdown
+
+Name: datatypes/radon.datatypes/RandomVariable/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.azure/AzureResourceTriggeredFunction/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.azure/AzureBlobStorageContainer/LICENSE
+Content-Type: text/plain
+
+Name: _definitions/radonnodesazure__AzureBlobTriggerContainer.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.abstract/ObjectStorage/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.abstract/CloudPlatform/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.abstract/ApiGateway/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: _definitions/steIgeneral__seperate_function.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.azure/AzureResourceGroup/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: relationshiptypes/radon.relationships.azure/AzureBlobTriggerDurable/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.abstract/Database/README.md
+Content-Type: text/x-web-markdown
+
+Name: _definitions/tyIgeneral__Event.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: _definitions/radonnodesazure__AzureStorageAccount.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.abstract/ApiGateway/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.abstract/Database/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.azure/AzureStorageAccount/LICENSE
+Content-Type: text/plain
+
+Name: _definitions/radonnodesazure__AzureBlobStorageContainer.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.azure/AzureResourceGroup/files/delete/delete.yml
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureHttpTriggeredFunction/README.md
+Content-Type: text/x-web-markdown
+
+Name: relationshiptypes/radon.relationships.azure/ConnectToDurable/files/connect.yml
+Content-Type: text/plain
+
+Name: relationshiptypes/radon.relationships.azure/AzureBlobTriggerDurable/files/connect.yml
+Content-Type: text/plain
+
+Name: datatypes/radon.datatypes/Entry/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureBlobTriggerContainer/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.azure/AzurePlatform/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.abstract/CloudPlatform/LICENSE
+Content-Type: text/plain
+
+Name: _definitions/radonnodesabstract__ObjectStorage.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: _definitions/tyIgeneral__Interaction.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.azure/AzureBlobTriggerContainer/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: relationshiptypes/radon.relationships/Triggers/LICENSE
+Content-Type: text/plain
+
+Name: artifacttypes/radon.artifacts/Ansible/README.md
+Content-Type: text/x-web-markdown
+
+Name: relationshiptypes/radon.relationships.azure/ConnectToDurable/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureCosmosDB/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureResourceGroup/README.md
+Content-Type: text/x-web-markdown
+
+Name: _definitions/radonnodesazure__AzureHttpFunctionLocal.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: datatypes/radon.datatypes/Entry/README.md
+Content-Type: text/x-web-markdown
+
+Name: _definitions/radonrelationshipsazure__AzureCosmosDBTriggers.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.abstract/ObjectStorage/README.md
+Content-Type: text/x-web-markdown
+
+Name: _definitions/radonrelationshipsazure__ConnectToDurable.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.azure/AzureFunction/files/create/create.yml
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzurePlatform/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.azure/AzureBlobStorageContainer/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.abstract/Database/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: _definitions/radonnodesazure__AzureCosmosDB.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.azure/AzureResourceTriggeredFunction/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.abstract/Function/LICENSE
+Content-Type: text/plain
+
+Name: _definitions/radonrelationships__ConnectsTo.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.azure/AzureResourceGroup/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: _definitions/tyIgeneral__Activity.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.azure/AzureDurableOrchestrator/files/create/create.yml
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureBlobStorageContainer/README.md
+Content-Type: text/x-web-markdown
+
+Name: capabilitytypes/radon.capabilities/Invocable/LICENSE
+Content-Type: text/plain
+
+Name: _definitions/tyIgeneral__Entry.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: _definitions/radonnodesazure__AzureResourceTriggeredFunction.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: relationshiptypes/radon.relationships.azure/AzureContainerTriggers/LICENSE
+Content-Type: text/plain
+
+Name: _definitions/radonrelationshipsazure__AzureTriggers.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: _definitions/radonrelationshipsazure__AzureContainerTriggers.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: _definitions/radonrelationships__Triggers.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: relationshiptypes/radon.relationships.azure/AzureBlobTriggerDurable/LICENSE
+Content-Type: text/plain
+
+Name: datatypes/radon.datatypes/Event/README.md
+Content-Type: text/x-web-markdown
+
+Name: _definitions/radonartifacts__Ansible.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: relationshiptypes/radon.relationships.azure/AzureCosmosDBTriggers/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.azure/AzureBlobStorageContainer/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.azure/AzureBlobStorageContainer/files/create/create.yml
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzurePlatform/files/create/create.yml
+Content-Type: text/plain
+
+Name: _definitions/radonnodesabstract__CloudPlatform.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.abstract/ApiGateway/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.azure/AzureCosmosDB/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.azure/AzureStorageAccount/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.azure/AzureHttpTriggeredFunction/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.abstract/ObjectStorage/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: relationshiptypes/radon.relationships/ConnectsTo/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureStorageAccount/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.azure/AzureHttpTriggeredFunction/appearance/bigIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.azure/AzureBlobTriggerContainer/appearance/smallIcon.png
+Content-Type: image/png
+
+Name: nodetypes/radon.nodes.azure/AzureFunction/LICENSE
+Content-Type: text/plain
+
+Name: datatypes/radon.datatypes/Precedence/LICENSE
+Content-Type: text/plain
+
+Name: datatypes/radon.datatypes/Interaction/LICENSE
+Content-Type: text/plain
+
+Name: nodetypes/radon.nodes.azure/AzureHttpFunctionLocal/LICENSE
+Content-Type: text/plain
+
+Name: _definitions/radoncapabilities__Invocable.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: _definitions/radonnodesazure__AzureResourceGroup.tosca
+Content-Type: application/vnd.oasis.tosca.definitions
+
+Name: nodetypes/radon.nodes.abstract/CloudPlatform/README.md
+Content-Type: text/x-web-markdown
+
+Name: nodetypes/radon.nodes.azure/AzureDurableOrchestrator/README.md
+Content-Type: text/x-web-markdown
+
+Name: relationshiptypes/radon.relationships.azure/AzureCosmosDBTriggers/LICENSE
+Content-Type: text/plain
+

@@ -1,0 +1,100 @@
+tosca_definitions_version: tosca_simple_yaml_1_3
+
+imports:
+  - file: radonnodesabstract__ObjectStorage.tosca
+    namespace_uri: radon.nodes.abstract
+    namespace_prefix: radonnodesabstract
+  - file: radonartifacts__Ansible.tosca
+    namespace_uri: radon.artifacts
+    namespace_prefix: radonartifacts
+  - file: radonnodesazure__AzurePlatform.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonrelationshipsazure__AzureContainerTriggers.tosca
+    namespace_uri: radon.relationships.azure
+    namespace_prefix: radonrelationshipsazure
+  - file: radoncapabilities__Invocable.tosca
+    namespace_uri: radon.capabilities
+    namespace_prefix: radoncapabilities
+  - file: radonnodesabstract__Function.tosca
+    namespace_uri: radon.nodes.abstract
+    namespace_prefix: radonnodesabstract
+node_types:
+  radon.nodes.azure.AzureBlobStorageContainer:
+    derived_from: radon.nodes.abstract.ObjectStorage
+    metadata:
+      targetNamespace: "radon.nodes.azure"
+      abstract: "false"
+      final: "false"
+    properties:
+      public_access:
+        type: string
+        description: The container's level of public access
+        required: false
+        default: "container"
+        constraints:
+          - valid_values: [ blob, container ]
+      container_name:
+        type: string
+        description: The name of the new Azure container
+      storage_account_name:
+        type: string
+        description: The name of the existing Azure storage account
+      resource_group_name:
+        type: string
+        description: The name of the existing Azure resource group
+    requirements:
+      - host:
+          capability: tosca.capabilities.Container
+          node: radon.nodes.azure.AzurePlatform
+          relationship: tosca.relationships.HostedOn
+          occurrences: [ 1, 1 ]
+      - invoker:
+          capability: radon.capabilities.Invocable
+          node: radon.nodes.abstract.Function
+          relationship: radon.relationships.azure.AzureContainerTriggers
+          occurrences: [ 0, UNBOUNDED ]
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+        inputs:
+          public_access:
+            type: string
+            description: The container's level of public access
+            required: false
+            default: { get_property: [ SELF, public_access ] }
+          container_name:
+            type: string
+            description: The name of the new Azure container
+            required: true
+            default: { get_property: [ SELF, container_name ] }
+          storage_account_name:
+            type: string
+            description: The name of the existing Azure storage account
+            required: true
+            default: { get_property: [ SELF, storage_account_name ] }
+          resource_group_name:
+            type: string
+            description: The name of the existing Azure resource group
+            required: true
+            default: { get_property: [ SELF, resource_group_name ] }
+        operations:
+          create:
+            description: The standard create operation
+            implementation:
+              primary: /nodetypes/radon.nodes.azure/AzureBlobStorageContainer/files/create/create.yml
+              timeout: 0
+          delete:
+            description: The standard delete operation
+            implementation:
+              primary: /nodetypes/radon.nodes.azure/AzureBlobStorageContainer/files/delete/delete.yml
+              timeout: 0
+    artifacts:
+      create:
+        type: radon.artifacts.Ansible
+        description: The YAML artifact for creation
+        file: /nodetypes/radon.nodes.azure/AzureBlobStorageContainer/files/create/create.yml
+      delete:
+        type: radon.artifacts.Ansible
+        description: The YAML artifact for deletion
+        file: /nodetypes/radon.nodes.azure/AzureBlobStorageContainer/files/delete/delete.yml

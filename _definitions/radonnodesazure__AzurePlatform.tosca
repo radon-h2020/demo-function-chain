@@ -1,0 +1,97 @@
+tosca_definitions_version: tosca_simple_yaml_1_3
+
+imports:
+  - file: radonnodesabstract__CloudPlatform.tosca
+    namespace_uri: radon.nodes.abstract
+    namespace_prefix: radonnodesabstract
+  - file: radonartifacts__Ansible.tosca
+    namespace_uri: radon.artifacts
+    namespace_prefix: radonartifacts
+  - file: radonnodesazure__AzureFunction.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureDurableOrchestrator.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureResourceGroup.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureHttpFunctionLocal.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureStorageAccount.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureBlobStorageContainer.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureResourceTriggeredFunction.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureCosmosDB.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureHttpTriggeredFunction.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+node_types:
+  radon.nodes.azure.AzurePlatform:
+    derived_from: radon.nodes.abstract.CloudPlatform
+    metadata:
+      targetNamespace: "radon.nodes.azure"
+      abstract: "false"
+      final: "false"
+    properties:
+      password:
+        type: string
+        description: Azure password
+      region:
+        type: string
+        description: The identifier for Azure region in which resources are/will be deployed
+      username:
+        type: string
+        description: Azure username
+    capabilities:
+      host:
+        occurrences: [ 1, UNBOUNDED ]
+        valid_source_types: [ radon.nodes.azure.AzureResourceGroup, radon.nodes.azure.AzureStorageAccount, radon.nodes.azure.AzureBlobStorageContainer, radon.nodes.azure.AzureCosmosDB, radon.nodes.azure.AzureFunction, radon.nodes.azure.AzureResourceTriggeredFunction, radon.nodes.azure.AzureHttpTriggeredFunction, radon.nodes.azure.AzureHttpFunctionLocal, radon.nodes.azure.AzureDurableOrchestrator ]
+        type: tosca.capabilities.Container
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+        inputs:
+          password:
+            type: string
+            description: Azure password
+            required: true
+            default: { get_property: [ SELF, password ] }
+          region:
+            type: string
+            description: The identifier for Azure region in which resources are/will be deployed
+            required: true
+            default: { get_property: [ SELF, region ] }
+          username:
+            type: string
+            description: Azure username
+            required: true
+            default: { get_property: [ SELF, username ] }
+        operations:
+          create:
+            description: The standard create operation
+            implementation:
+              primary: /nodetypes/radon.nodes.azure/AzurePlatform/files/create/create.yml
+              timeout: 0
+          delete:
+            description: The standard delete operation
+            implementation:
+              primary: /nodetypes/radon.nodes.azure/AzurePlatform/files/delete/delete.yml
+              timeout: 0
+    artifacts:
+      create:
+        type: radon.artifacts.Ansible
+        description: The YAML artifact for creation
+        file: /nodetypes/radon.nodes.azure/AzurePlatform/files/create/create.yml
+      delete:
+        type: radon.artifacts.Ansible
+        description: The YAML artifact for deletion
+        file: /nodetypes/radon.nodes.azure/AzurePlatform/files/delete/delete.yml

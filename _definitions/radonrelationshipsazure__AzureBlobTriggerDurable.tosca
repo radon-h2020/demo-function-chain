@@ -1,0 +1,42 @@
+tosca_definitions_version: tosca_simple_yaml_1_3
+
+relationship_types:
+  radon.relationships.azure.AzureBlobTriggerDurable:
+    derived_from: tosca.relationships.ConnectsTo
+    metadata:
+      targetNamespace: "radon.relationships.azure"
+      abstract: "false"
+      final: "false"
+    interfaces:
+      Configure:
+        type: tosca.interfaces.relationship.Configure
+        operations:
+          post_configure_source:
+            inputs:
+              storage_account_name:
+                type: string
+                required: true
+                default: { get_property: [ SOURCE, storage_account_name ] }
+              container_name:
+                type: integer
+                required: true
+                default: { get_property: [ SOURCE, container_name ] }
+              container_out_name:
+                type: integer
+                required: true
+                default: { get_property: [ SOURCE, container_out_name ] }
+              function_app_name:
+                type: string
+                required: true
+                default: { get_property: [ TARGET, function_app_name ] }
+              resource_group_name:
+                type: string
+                required: true
+                default: { get_property: [ SOURCE, resource_group_name ] }
+              target_resource_group_name:
+                type: string
+                required: true
+                default: { get_property: [ SOURCE, resource_group_name ] }
+            implementation:
+              primary: /relationshiptypes/radon.relationships.azure/AzureBlobTriggerDurable/files/connect.yml
+              timeout: 0

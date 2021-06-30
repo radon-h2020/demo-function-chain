@@ -1,0 +1,65 @@
+tosca_definitions_version: tosca_simple_yaml_1_3
+
+metadata:
+  targetNamespace: "example.org.tosca.servicetemplates"
+  name: "seperate_function"
+imports:
+  - file: radonnodesazure__AzureBlobTriggerContainer.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureHttpFunctionLocal.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonnodesazure__AzureDurableOrchestrator.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+  - file: radonrelationshipsazure__ConnectToDurable.tosca
+    namespace_uri: radon.relationships.azure
+    namespace_prefix: radonrelationshipsazure
+  - file: radonrelationshipsazure__AzureBlobTriggerDurable.tosca
+    namespace_uri: radon.relationships.azure
+    namespace_prefix: radonrelationshipsazure
+topology_template:
+  node_templates:
+    AzureBlobTriggerContainer_0:
+      type: radon.nodes.azure.AzureBlobTriggerContainer
+      metadata:
+        x: "426"
+        y: "284"
+        displayName: "AzureBlobTriggerContainer"
+      properties:
+        public_access: "container"
+        size: "0 MB"
+      requirements:
+        - trigger:
+            node: AzureDurableOrchestrator_0
+            relationship: con_AzureBlobTriggerDurable_0
+            capability: trigger
+    AzureHttpFunctionLocal_0:
+      type: radon.nodes.azure.AzureHttpFunctionLocal
+      metadata:
+        x: "1067"
+        y: "261"
+        displayName: "AzureHttpFunctionLocal"
+      properties:
+        runtime_type: "python"
+        function_verison: 2
+      requirements:
+        - connect:
+            node: AzureDurableOrchestrator_0
+            relationship: con_ConnectToDurable_0
+            capability: connect
+    AzureDurableOrchestrator_0:
+      type: radon.nodes.azure.AzureDurableOrchestrator
+      metadata:
+        x: "721"
+        y: "245"
+        displayName: "AzureDurableOrchestrator"
+      properties:
+        runtime_type: "python"
+        function_verison: 2
+  relationship_templates:
+    con_ConnectToDurable_0:
+      type: radon.relationships.azure.ConnectToDurable
+    con_AzureBlobTriggerDurable_0:
+      type: radon.relationships.azure.AzureBlobTriggerDurable

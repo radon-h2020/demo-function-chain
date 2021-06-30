@@ -1,0 +1,13 @@
+---
+- hosts: all
+  gather_facts: false
+  tasks:
+    - name: Create a new Azure BLOB storage container
+      shell: "az storage container create \
+    --account-name {{ storage_account_name }} \
+    --name {{ container_name }}"
+    - name: Create a new Azure BLOB storage container
+      shell: "az storage container create \
+    --account-name {{ storage_account_name }} \
+    --name {{ container_out_name }}"
+

@@ -1,0 +1,95 @@
+tosca_definitions_version: tosca_simple_yaml_1_3
+
+imports:
+  - file: radonartifacts__Ansible.tosca
+    namespace_uri: radon.artifacts
+    namespace_prefix: radonartifacts
+  - file: radonnodesazure__AzurePlatform.tosca
+    namespace_uri: radon.nodes.azure
+    namespace_prefix: radonnodesazure
+node_types:
+  radon.nodes.azure.AzureStorageAccount:
+    derived_from: tosca.nodes.SoftwareComponent
+    metadata:
+      targetNamespace: "radon.nodes.azure"
+      abstract: "false"
+      final: "false"
+    properties:
+      account_type:
+        type: string
+        description: The type of Azure storage account
+      storage_kind:
+        type: string
+        description: The kind of Azure storage
+      storage_account_name:
+        type: string
+        description: The name of the new Azure storage account
+      resource_group_name:
+        type: string
+        description: The name of the existing Azure resource group
+      access_tier:
+        type: string
+        description: The access tier for this storage account
+      region:
+        type: string
+        description: The identifier for Azure region in which resources are/will be deployed
+    requirements:
+      - host:
+          capability: tosca.capabilities.Container
+          node: radon.nodes.azure.AzurePlatform
+          relationship: tosca.relationships.HostedOn
+          occurrences: [ 1, 1 ]
+    interfaces:
+      Standard:
+        type: tosca.interfaces.node.lifecycle.Standard
+        inputs:
+          account_type:
+            type: string
+            description: The type of Azure storage account
+            required: true
+            default: { get_property: [ SELF, account_type ] }
+          storage_kind:
+            type: string
+            description: The kind of Azure storage
+            required: true
+            default: { get_property: [ SELF, storage_kind ] }
+          storage_account_name:
+            type: string
+            description: The name of the new Azure storage account
+            required: true
+            default: { get_property: [ SELF, storage_account_name ] }
+          resource_group_name:
+            type: string
+            description: The name of the new Azure resource group
+            required: true
+            default: { get_property: [ SELF, resource_group_name ] }
+          access_tier:
+            type: string
+            description: The access tier for this storage account
+            required: true
+            default: { get_property: [ SELF, access_tier ] }
+          region:
+            type: string
+            description: The identifier for Azure region in which resources are/will be deployed
+            required: true
+            default: { get_property: [ SELF, region ] }
+        operations:
+          create:
+            description: The standard create operation
+            implementation:
+              primary: /nodetypes/radon.nodes.azure/AzureStorageAccount/files/create/create.yml
+              timeout: 0
+          delete:
+            description: The standard delete operation
+            implementation:
+              primary: /nodetypes/radon.nodes.azure/AzureStorageAccount/files/delete/delete.yml
+              timeout: 0
+    artifacts:
+      create:
+        type: radon.artifacts.Ansible
+        description: The YAML artifact for creation
+        file: /nodetypes/radon.nodes.azure/AzureStorageAccount/files/create/create.yml
+      delete:
+        type: radon.artifacts.Ansible
+        description: The YAML artifact for deletion
+        file: /nodetypes/radon.nodes.azure/AzureStorageAccount/files/delete/delete.yml

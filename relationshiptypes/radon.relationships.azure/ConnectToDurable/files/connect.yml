@@ -1,0 +1,18 @@
+---
+- hosts: all
+  vars:
+    name: "function"
+  tasks:
+    - name: Get functio url from azure function
+      shell: "echo $(az functionapp function show -g {{ resource_group_name}} -n {{function_app_name}} --function-name {{function_name}} --query \"invokeUrlTemplate\")"
+      register: azure_function_url
+      
+    - set_fact:
+        azure_function: "{{ (azure_function_url.stdout | from_json)}}"
+         
+    - name: Unpack connection string dictionary
+      debug:
+        var: azure_function
+    
+    - name: register app settings
+      command: "az functionapp config appsettings set -g {{ target_resource_group_name }}  -n {{ target_function_app_name }} --settings {{name}}_{{ order }}={{ azure_function }}"

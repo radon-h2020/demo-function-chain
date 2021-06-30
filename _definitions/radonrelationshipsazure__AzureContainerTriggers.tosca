@@ -1,0 +1,107 @@
+tosca_definitions_version: tosca_simple_yaml_1_3
+
+imports:
+  - file: radonrelationships__Triggers.tosca
+    namespace_uri: radon.relationships
+    namespace_prefix: radonrelationships
+relationship_types:
+  radon.relationships.azure.AzureContainerTriggers:
+    description: Azure-specific relationship type representing AzureContainer-to-AzureFunction communication
+    derived_from: radon.relationships.Triggers
+    metadata:
+      targetNamespace: "radon.relationships.azure"
+      abstract: "false"
+      final: "false"
+    properties:
+      may_delivery_attempts:
+        type: integer
+        description: The maximum number of delivery attempts
+        required: false
+        default: 30
+        constraints:
+          - in_range: [ 1, 30 ]
+      event_ttl:
+        type: integer
+        description: The event time to live (in minutes)
+        required: false
+        default: 1440
+        constraints:
+          - in_range: [ 1, 1440 ]
+      event_types:
+        type: string
+        description: A space-separated list of event types
+        required: false
+        default: "Microsoft.Storage.BlobCreated"
+      storage_account_name:
+        type: string
+        description: The name of the existing Azure storage account
+      container_name:
+        type: string
+        description: The name of the existing Azure container to set up trigger for
+      function_app_name:
+        type: string
+        description: The name of the existing Azure function app
+      function_name:
+        type: string
+        description: The name of the existing Azure function to set up trigger for
+      resource_group_name:
+        type: string
+        description: The name of the existing Azure resource group
+      event_subscription_name:
+        type: string
+        description: The name of the new Azure event subscription trigger
+    interfaces:
+      Configure:
+        type: tosca.interfaces.relationship.Configure
+        inputs:
+          may_delivery_attempts:
+            type: integer
+            description: The maximum number of delivery attempts
+            required: false
+            default: { get_property: [ SELF, may_delivery_attempts ] }
+          event_ttl:
+            type: integer
+            description: The event time to live (in minutes)
+            required: false
+            default: { get_property: [ SELF, event_ttl ] }
+          event_types:
+            type: string
+            description: A space-separated list of event types
+            required: false
+            default: { get_property: [ SELF, event_types ] }
+          container_name:
+            type: string
+            description: The name of the existing Azure container to set up notification for
+            required: true
+            default: { get_property: [ SELF, container_name ] }
+          storage_account_name:
+            type: string
+            description: The name of the existing Azure storage account
+            required: true
+            default: { get_property: [ SELF, storage_account_name ] }
+          function_app_name:
+            type: string
+            description: The name of the existing Azure function app
+            required: true
+            default: { get_property: [ SELF, function_app_name ] }
+          function_name:
+            type: string
+            description: The name of the existing Azure function to set up trigger for
+            required: true
+            default: { get_property: [ SELF, function_name ] }
+          resource_group_name:
+            type: string
+            description: The name of the existing Azure resource group
+            required: true
+            default: { get_property: [ SELF, resource_group_name ] }
+          event_subscription_name:
+            type: string
+            description: The name of the new Azure event subscription trigger
+            required: true
+            default: { get_property: [ SELF, event_subscription_name ] }
+        operations:
+          post_configure_source:
+            description: The standard post_configure_source operation
+            implementation:
+              primary: /relationshiptypes/radon.relationships.azure/AzureContainerTriggers/files/post_configure_source.yml
+              timeout: 0

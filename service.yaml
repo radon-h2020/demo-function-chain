@@ -1,9 +1,8 @@
----
 tosca_definitions_version: tosca_simple_yaml_1_3
 
 metadata:
   targetNamespace: "example.org.tosca.servicetemplates"
-  name: "seperate_function"
+  name: "seperate_function2"
 imports:
   - file: _definitions/radonnodesazure__AzureBlobTriggerContainer.tosca
     namespace_uri: radon.nodes.azure
@@ -25,38 +24,39 @@ imports:
     namespace_prefix: radonrelationshipsazure
 topology_template:
   node_templates:
-    AzureBlobTriggerContainer_0:
+    AzureBlobTriggerContainer_1:
       type: radon.nodes.azure.AzureBlobTriggerContainer
       metadata:
         x: "253"
         y: "199"
         displayName: "AzureBlobTriggerContainer"
       properties:
-        container_out_name: { get_input: container_out_name }
+        public_access: "container"
+        container_out_name: "first-operatest-output"
         size: "0 MB"
-        container_name: { get_input: container_name }
-        storage_account_name: { get_input: storage_account_name }
+        container_name: "first-operatest"
+        storage_account_name: "myappchain"
         name: "blobtriggercontainer"
-        resource_group_name: { get_input: resource_group_name }
+        resource_group_name: "myappchain"
       requirements:
         - trigger:
-            node: AzureDurableOrchestrator_0
+            node: AzureDurableOrchestrator_1
             relationship: con_AzureBlobTriggerDurable_0
             capability: trigger
-    AzureHttpFunctionLocal_0:
+    AzureHttpFunctionLocal_4:
       type: radon.nodes.azure.AzureHttpFunctionLocal
       metadata:
         x: "905"
         y: "149"
         displayName: "AzureHttpFunctionLocal"
       properties:
-        storage_account_name: { get_input: storage_account_name }
-        function_app_name: { get_input: function_app_name_inchain_1 }
+        storage_account_name: "myappchain"
+        function_app_name: "MyFuncInChain1"
         runtime_version: 3.6
-        function_name: { get_input: function_name_inchain_1 }
+        function_name: "style_transfer"
         os_type: "Linux"
         name: "AzureHttpFunction"
-        resource_group_name: { get_input: resource_group_name }
+        resource_group_name: "myappchain"
         runtime_type: "python"
         function_version: 2
         order: 1
@@ -67,23 +67,23 @@ topology_template:
           file: function/style_transfer.zip
       requirements:
         - connect:
-            node: AzureDurableOrchestrator_0
+            node: AzureDurableOrchestrator_1
             relationship: con_ConnectToDurable_0
             capability: connect
-    AzureHttpFunctionLocal_1:
+    AzureHttpFunctionLocal_5:
       type: radon.nodes.azure.AzureHttpFunctionLocal
       metadata:
         x: "905"
         y: "149"
         displayName: "AzureHttpFunctionLocal"
       properties:
-        storage_account_name: { get_input: storage_account_name }
-        function_app_name: { get_input: function_app_name_inchain_2 }
+        storage_account_name: "myappchain"
+        function_app_name: "MyFuncInChain2"
         runtime_version: 3.6
-        function_name: { get_input: function_name_inchain_2 }
+        function_name: "channel_filter"
         os_type: "Linux"
         name: "AzureHttpFunction"
-        resource_group_name: { get_input: resource_group_name }
+        resource_group_name: "myappchain"
         runtime_type: "python"
         function_version: 2
         order: 2
@@ -94,23 +94,23 @@ topology_template:
           file: function/channel_filter.zip
       requirements:
         - connect:
-            node: AzureDurableOrchestrator_0
+            node: AzureDurableOrchestrator_1
             relationship: con_ConnectToDurable_1
             capability: connect
-    AzureHttpFunctionLocal_2:
+    AzureHttpFunctionLocal_6:
       type: radon.nodes.azure.AzureHttpFunctionLocal
       metadata:
         x: "905"
         y: "149"
         displayName: "AzureHttpFunctionLocal"
       properties:
-        storage_account_name: { get_input: storage_account_name }
-        function_app_name: { get_input: function_app_name_inchain_3 }
+        storage_account_name: "myappchain"
+        function_app_name: "MyFuncInChain3"
         runtime_version: 3.6
-        function_name: { get_input: function_name_inchain_3 }
+        function_name: "text_printer"
         os_type: "Linux"
         name: "AzureHttpFunction"
-        resource_group_name: { get_input: resource_group_name }
+        resource_group_name: "myappchain"
         runtime_type: "python"
         function_version: 2
         order: 3
@@ -121,21 +121,21 @@ topology_template:
           file: function/text_printer.zip
       requirements:
         - connect:
-            node: AzureDurableOrchestrator_0
+            node: AzureDurableOrchestrator_1
             relationship: con_ConnectToDurable_2
             capability: connect
-    AzureDurableOrchestrator_0:
+    AzureDurableOrchestrator_1:
       type: radon.nodes.azure.AzureDurableOrchestrator
       metadata:
         x: "586"
         y: "209"
         displayName: "AzureDurableOrchestrator"
       properties:
-        storage_account_name: { get_input: storage_account_name }
-        function_app_name: { get_input: function_app_name_orchestrator }
-        function_name: { get_input: function_name_orchestrator }
+        storage_account_name: "myappchain"
+        function_app_name: "ADO1"
+        function_name: "DurableFunctionsOrchestrator1"
         os_type: "Linux"
-        resource_group_name: { get_input: resource_group_name }
+        resource_group_name: "myappchain"
         runtime_type: "python"
         runtime_version: 3.6
         function_version: 2
@@ -153,4 +153,3 @@ topology_template:
       type: radon.relationships.azure.ConnectToDurable
     con_AzureBlobTriggerDurable_0:
       type: radon.relationships.azure.AzureBlobTriggerDurable
-...

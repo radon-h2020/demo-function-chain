@@ -34,5 +34,5 @@ storage_account_name: myexamplestorage
 Now, you can deploy this image processing example with xOpera as follows: 
 ```
 # run xOpera service (make sure to setup the env vars in yml file)
-opera deploy -i inputs.yaml service.yaml
+opera deploy service.yaml
 ```

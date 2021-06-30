@@ -1,16 +1,16 @@
 ---
-# This yaml file contains inputs for resize_service_opera_v1_3.yml.
+# This yaml file contains inputs for service.yaml.
 
-resource_group_name: mynewappchain
-storage_account_name: mynewappchain
-container_in_name: first-operatest
-container_out_name: firtst-operatest-output
-function_app_name_orchestrator: AOF1
-function_name_orchestrator: DurableFunctionsOrchestrator1
-function_app_name_inchain_1: MyFuncInChain1
-function_name_inchain_2: style_transfer
-function_app_name_inchain_2: MyFuncInChain2
-function_name_inchain_3: channel_filter
-function_app_name_inchain_3: MyFuncInChain1
-function_name_inchain_3: text_printer
+resource_group_name: <your resource group name>
+storage_account_name: <your storage account name>
+container_name: <container name for uploading and trigger>
+container_out_name: <container name for output result>
+function_app_name_orchestrator: <function app name of durable orchestrator>
+function_name_orchestrator: <function name of durable orchestrator>
+function_app_name_inchain_1: <function app name of the first function in chain>
+function_name_inchain_2: <function name of the first function in chain>
+function_app_name_inchain_2: <function app name of the second function in chain>
+function_name_inchain_3: <function name of the second function in chain>
+function_app_name_inchain_3: <function app name of the third function in chain>
+function_name_inchain_3: <function name of the third function in chain>
 ...

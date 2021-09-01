@@ -1,6 +1,5 @@
 ---
 # This yaml file contains inputs for service.yaml.
-
 resource_group_name: <your resource group name>
 storage_account_name: <your storage account name>
 container_name: <container name for uploading and trigger>

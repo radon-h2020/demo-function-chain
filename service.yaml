@@ -1,3 +1,4 @@
+---
 tosca_definitions_version: tosca_simple_yaml_1_3
 
 metadata:
@@ -23,6 +24,32 @@ imports:
     namespace_uri: radon.relationships.azure
     namespace_prefix: radonrelationshipsazure
 topology_template:
+  inputs:
+    resource_group_name:
+      type: string
+    storage_account_name:
+      type: string
+    container_name:
+      type: string
+    container_out_name:
+      type: string
+    function_app_name_orchestrator:
+      type: string
+    function_name_orchestrator:
+      type: string
+    function_app_name_inchain_1:
+      type: string
+    function_name_inchain_1:
+      type: string
+    function_app_name_inchain_2:
+      type: string
+    function_name_inchain_2:
+      type: string
+    function_app_name_inchain_3:
+      type: string
+    function_name_inchain_3:
+      type: string
+
   node_templates:
     AzureBlobTriggerContainer_0:
       type: radon.nodes.azure.AzureBlobTriggerContainer
@@ -152,3 +179,4 @@ topology_template:
       type: radon.relationships.azure.ConnectToDurable
     con_AzureBlobTriggerDurable_0:
       type: radon.relationships.azure.AzureBlobTriggerDurable
+...
